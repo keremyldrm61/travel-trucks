@@ -1,0 +1,31 @@
+.section {
+  padding: 64px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 80px 48px;
+  border-radius: 24px;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.title {
+  margin-bottom: 16px;
+  font-size: 40px;
+}
+
+.text {
+  margin-bottom: 24px;
+  color: #475467;
+}
+
+.link {
+  display: inline-flex;
+  padding: 14px 24px;
+  border-radius: 999px;
+  background-color: #e44848;
+  color: #ffffff;
+  font-weight: 600;
+}

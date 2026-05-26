@@ -1,9 +1,10 @@
-import "./HomePage.module.css";
+import { Hero } from "../../components/Hero/Hero";
+import css from "./HomePage.module.css";
 
 export const HomePage = () => {
   return (
-    <div>
-      <p></p>
+    <div className={css.page}>
+      <Hero />
     </div>
   );
 };

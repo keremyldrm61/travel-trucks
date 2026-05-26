@@ -1,0 +1,23 @@
+.list {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.link {
+  display: inline-flex;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--main);
+  transition: color 200ms ease;
+}
+
+.link:hover,
+.link:focus-visible {
+  color: var(--green-hover);
+}
+
+.active {
+  color: var(--grey-green);
+}
