@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-const FAVORITES_STORAGE_KEY = "travel-trucks-favorites";
+import { FAVORITES_STORAGE_KEY } from "../../utils/constants";
 
 const getInitialFavorites = () => {
   const savedFavorites = localStorage.getItem(FAVORITES_STORAGE_KEY);

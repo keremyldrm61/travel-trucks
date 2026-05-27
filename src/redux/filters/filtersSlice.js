@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   location: "",
   form: "",
+  engine: "",
   transmission: "",
   kitchen: false,
   AC: false,
@@ -18,6 +19,9 @@ const filtersSlice = createSlice({
     },
     setFormFilter(state, action) {
       state.form = action.payload;
+    },
+    setEngineFilter(state, action) {
+      state.engine = action.payload;
     },
     setTransmissionFilter(state, action) {
       state.transmission = action.payload;
@@ -43,6 +47,7 @@ const filtersSlice = createSlice({
 export const {
   setLocationFilter,
   setFormFilter,
+  setEngineFilter,
   setTransmissionFilter,
   toggleKitchenFilter,
   toggleACFilter,

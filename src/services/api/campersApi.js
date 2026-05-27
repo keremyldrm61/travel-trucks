@@ -11,6 +11,10 @@ const buildCampersQueryParams = (filters = {}) => {
     params.form = filters.form;
   }
 
+  if (filters.engine) {
+    params.engine = filters.engine;
+  }
+
   if (filters.transmission) {
     params.transmission = filters.transmission;
   }
@@ -43,7 +47,10 @@ export const getCampers = async (params = {}) => {
     params: buildCampersQueryParams(params),
   });
 
-  return response.data;
+  return {
+    items: response.data.items ?? response.data,
+    total: response.data.total ?? response.data.length ?? 0,
+  };
 };
 
 export const getCamperById = async (id) => {
@@ -57,5 +64,8 @@ export const getFilteredCampers = async (filters = {}) => {
     params: buildCampersQueryParams(filters),
   });
 
-  return response.data;
+  return {
+    items: response.data.items ?? response.data,
+    total: response.data.total ?? response.data.length ?? 0,
+  };
 };

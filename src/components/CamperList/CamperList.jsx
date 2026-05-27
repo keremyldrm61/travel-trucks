@@ -1,9 +1,14 @@
-import "./CamperList.module.css";
+import { CamperCard } from "../CamperCard/CamperCard";
+import css from "./CamperList.module.css";
 
-export const CamperList = () => {
+export const CamperList = ({ campers }) => {
   return (
-    <div>
-      <p></p>
-    </div>
+    <ul className={css.list}>
+      {campers.map((camper) => (
+        <li className={css.item} key={camper.id}>
+          <CamperCard camper={camper} />
+        </li>
+      ))}
+    </ul>
   );
 };

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { CAMPERS_PER_PAGE, INITIAL_PAGE } from "../../utils/constants";
 import {
   fetchCamperDetails,
   fetchCampers,
@@ -10,9 +11,10 @@ const initialState = {
   selectedCamper: null,
   isLoading: false,
   error: null,
-  page: 1,
-  limit: 4,
+  page: INITIAL_PAGE,
+  limit: CAMPERS_PER_PAGE,
   hasMore: true,
+  total: 0,
 };
 
 const handlePending = (state) => {
@@ -31,8 +33,9 @@ const campersSlice = createSlice({
   reducers: {
     clearCampers(state) {
       state.items = [];
-      state.page = 1;
+      state.page = INITIAL_PAGE;
       state.hasMore = true;
+      state.total = 0;
     },
     setPage(state, action) {
       state.page = action.payload;
@@ -50,23 +53,25 @@ const campersSlice = createSlice({
       .addCase(fetchCampers.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
+        state.total = action.payload.total;
 
         if (state.page > 1) {
-          state.items.push(...action.payload);
+          state.items.push(...action.payload.items);
         } else {
-          state.items = action.payload;
+          state.items = action.payload.items;
         }
 
-        state.hasMore = action.payload.length === state.limit;
+        state.hasMore = state.items.length < action.payload.total;
       })
       .addCase(fetchCampers.rejected, handleRejected)
       .addCase(fetchFilteredCampers.pending, handlePending)
       .addCase(fetchFilteredCampers.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.items = action.payload;
+        state.items = action.payload.items;
+        state.total = action.payload.total;
         state.page = 1;
-        state.hasMore = action.payload.length === state.limit;
+        state.hasMore = state.items.length < action.payload.total;
       })
       .addCase(fetchFilteredCampers.rejected, handleRejected)
       .addCase(fetchCamperDetails.pending, handlePending)

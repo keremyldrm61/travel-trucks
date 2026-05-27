@@ -1,9 +1,84 @@
-import "./BookingForm.module.css";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import css from "./BookingForm.module.css";
+
+const initialFormState = {
+  name: "",
+  email: "",
+  bookingDate: "",
+  comment: "",
+};
 
 export const BookingForm = () => {
+  const [formData, setFormData] = useState(initialFormState);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData((previousState) => ({
+      ...previousState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!formData.name.trim() || !formData.email.trim() || !formData.bookingDate) {
+      toast.error("Please fill in all required booking fields.");
+
+      return;
+    }
+
+    toast.success("Your booking request has been sent successfully.");
+    setFormData(initialFormState);
+  };
+
   return (
-    <div>
-      <p></p>
-    </div>
+    <section className={css.section}>
+      <div className={css.inner}>
+        <h2 className={css.title}>Book your campervan now</h2>
+        <p className={css.subtitle}>
+          Stay connected! We are always ready to help you.
+        </p>
+
+        <form className={css.form} onSubmit={handleSubmit}>
+          <input
+            className={css.input}
+            name="name"
+            onChange={handleChange}
+            placeholder="Name*"
+            type="text"
+            value={formData.name}
+          />
+          <input
+            className={css.input}
+            name="email"
+            onChange={handleChange}
+            placeholder="Email*"
+            type="email"
+            value={formData.email}
+          />
+          <input
+            className={css.input}
+            name="bookingDate"
+            onChange={handleChange}
+            type="date"
+            value={formData.bookingDate}
+          />
+          <textarea
+            className={`${css.input} ${css.textarea}`}
+            name="comment"
+            onChange={handleChange}
+            placeholder="Comment"
+            value={formData.comment}
+          />
+
+          <button className={css.button} type="submit">
+            Send
+          </button>
+        </form>
+      </div>
+    </section>
   );
 };

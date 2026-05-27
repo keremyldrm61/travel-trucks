@@ -1,0 +1,21 @@
+.state {
+  padding: 48px 32px;
+  border: 1px dashed var(--gray-light);
+  border-radius: 20px;
+  background-color: var(--white);
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 12px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.33;
+  color: var(--main);
+}
+
+.text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+}

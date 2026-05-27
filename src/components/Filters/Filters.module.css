@@ -1,0 +1,261 @@
+.sidebar {
+  width: 360px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 24px;
+  border-radius: 20px;
+  background-color: var(--inputs);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--gray);
+  line-height: 1.5;
+}
+
+.inputWrap {
+  position: relative;
+}
+
+.inputIcon {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  width: 20px;
+  height: 20px;
+}
+
+.input {
+  width: 100%;
+  height: 56px;
+  padding: 18px 20px 18px 48px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  outline: none;
+  background-color: var(--white);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--main);
+}
+
+.input::placeholder {
+  color: var(--gray);
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.blockTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--main);
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--gray);
+}
+
+.radioList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.radioOption {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--main);
+}
+
+.radio {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--gray);
+  border-radius: 50%;
+  background-color: var(--white);
+}
+
+.radioActive {
+  border: 6px solid var(--main);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 312px;
+}
+
+.searchButton,
+.resetButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 312px;
+  height: 56px;
+  padding: 16px 32px;
+  border: 1px solid transparent;
+  border-radius: 200px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.searchButton {
+  background-color: var(--grey-green);
+  color: var(--white);
+  transition: background-color 0.3s ease;
+}
+
+.searchButton:hover,
+.searchButton:focus-visible {
+  background-color: var(--green-hover);
+}
+
+.resetButton {
+  gap: 8px;
+  background-color: var(--white);
+  border-color: var(--gray-light);
+  color: var(--main);
+  transition: background-color 0.3s ease;
+}
+
+.resetButton:hover {
+  background-color: var(--badges);
+}
+
+.resetIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.favoritesBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 8px;
+  border-top: 1px solid var(--gray-light);
+}
+
+.favoritesHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.favoritesCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background-color: var(--badges);
+  color: var(--main);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.favoritesEmpty,
+.favoritesHint {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.favoritesList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.favoriteItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background-color: var(--white);
+}
+
+.favoriteLink {
+  min-width: 0;
+  flex: 1;
+}
+
+.favoriteLink:hover .favoriteName,
+.favoriteLink:focus-visible .favoriteName {
+  color: var(--button);
+}
+
+.favoriteInfo {
+  min-width: 0;
+}
+
+.favoriteName {
+  margin-bottom: 4px;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--main);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.favoriteLocation {
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--gray);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.favoriteRemove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--badges);
+  flex-shrink: 0;
+}
+
+.favoriteRemoveIcon {
+  width: 14px;
+  height: 14px;
+}
