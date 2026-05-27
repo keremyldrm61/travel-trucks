@@ -7,7 +7,7 @@
   margin: 0 auto;
   padding: 48px;
   border-radius: 24px;
-  background-color: #ffffff;
+  background-color: var(--white);
 }
 
 .title {
@@ -18,11 +18,11 @@
 
 .text {
   margin-bottom: 12px;
-  color: #475467;
+  color: var(--text);
   line-height: 1.6;
 }
 
 .code {
   font-weight: 700;
-  color: #101828;
+  color: var(--main);
 }
