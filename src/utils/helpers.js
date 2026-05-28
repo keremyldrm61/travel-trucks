@@ -26,3 +26,14 @@ export const buildCamperFeatures = (camper) =>
     camper?.gas ? "Gas" : null,
     camper?.water ? "Water" : null,
   ].filter(Boolean);
+
+export const hasActiveFilters = (filters = {}) =>
+  Object.values(filters).some((value) =>
+    typeof value === "boolean" ? value : Boolean(value),
+  );
+
+export const buildCampersRequestParams = (filters = {}, page, limit) => ({
+  ...filters,
+  page,
+  limit,
+});

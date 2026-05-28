@@ -68,8 +68,8 @@
 }
 
 .sectionTitle {
+  font-weight: 400;
   font-size: 16px;
-  font-weight: 500;
   line-height: 1.5;
   color: var(--gray);
 }
@@ -88,8 +88,8 @@
   padding: 0;
   border: none;
   background-color: transparent;
-  font-size: 14px;
   font-weight: 400;
+  font-size: 16px;
   line-height: 1.5;
   color: var(--main);
 }

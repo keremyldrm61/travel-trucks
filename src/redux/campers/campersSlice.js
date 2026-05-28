@@ -15,6 +15,7 @@ const initialState = {
   limit: CAMPERS_PER_PAGE,
   hasMore: true,
   total: 0,
+  activeQuery: {},
 };
 
 const handlePending = (state) => {
@@ -37,6 +38,9 @@ const campersSlice = createSlice({
       state.hasMore = true;
       state.total = 0;
     },
+    setActiveQuery(state, action) {
+      state.activeQuery = action.payload;
+    },
     setPage(state, action) {
       state.page = action.payload;
     },
@@ -54,8 +58,9 @@ const campersSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.total = action.payload.total;
+        const requestedPage = action.meta.arg?.page ?? INITIAL_PAGE;
 
-        if (state.page > 1) {
+        if (requestedPage > INITIAL_PAGE) {
           state.items.push(...action.payload.items);
         } else {
           state.items = action.payload.items;
@@ -68,9 +73,15 @@ const campersSlice = createSlice({
       .addCase(fetchFilteredCampers.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.items = action.payload.items;
         state.total = action.payload.total;
-        state.page = 1;
+        const requestedPage = action.meta.arg?.page ?? INITIAL_PAGE;
+
+        if (requestedPage > INITIAL_PAGE) {
+          state.items.push(...action.payload.items);
+        } else {
+          state.items = action.payload.items;
+        }
+
         state.hasMore = state.items.length < action.payload.total;
       })
       .addCase(fetchFilteredCampers.rejected, handleRejected)
@@ -84,7 +95,12 @@ const campersSlice = createSlice({
   },
 });
 
-export const { clearCampers, setPage, incrementPage, clearSelectedCamper } =
-  campersSlice.actions;
+export const {
+  clearCampers,
+  setActiveQuery,
+  setPage,
+  incrementPage,
+  clearSelectedCamper,
+} = campersSlice.actions;
 
 export default campersSlice.reducer;

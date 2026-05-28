@@ -42,15 +42,25 @@ const buildCampersQueryParams = (filters = {}) => {
   return params;
 };
 
-export const getCampers = async (params = {}) => {
-  const response = await axiosInstance.get("/campers", {
-    params: buildCampersQueryParams(params),
-  });
+const normalizeCampersResponse = (data) => ({
+  items: data.items ?? data,
+  total: data.total ?? data.length ?? 0,
+});
 
-  return {
-    items: response.data.items ?? response.data,
-    total: response.data.total ?? response.data.length ?? 0,
-  };
+export const getCampers = async (params = {}) => {
+  try {
+    const response = await axiosInstance.get("/campers", {
+      params: buildCampersQueryParams(params),
+    });
+
+    return normalizeCampersResponse(response.data);
+  } catch (error) {
+    if (error.response?.status === 404) {
+      return { items: [], total: 0 };
+    }
+
+    throw error;
+  }
 };
 
 export const getCamperById = async (id) => {
@@ -60,12 +70,17 @@ export const getCamperById = async (id) => {
 };
 
 export const getFilteredCampers = async (filters = {}) => {
-  const response = await axiosInstance.get("/campers", {
-    params: buildCampersQueryParams(filters),
-  });
+  try {
+    const response = await axiosInstance.get("/campers", {
+      params: buildCampersQueryParams(filters),
+    });
 
-  return {
-    items: response.data.items ?? response.data,
-    total: response.data.total ?? response.data.length ?? 0,
-  };
+    return normalizeCampersResponse(response.data);
+  } catch (error) {
+    if (error.response?.status === 404) {
+      return { items: [], total: 0 };
+    }
+
+    throw error;
+  }
 };

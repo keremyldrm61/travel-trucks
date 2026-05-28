@@ -21,3 +21,7 @@
 .active {
   color: var(--grey-green);
 }
+
+.detailsList .active {
+  color: var(--main);
+}

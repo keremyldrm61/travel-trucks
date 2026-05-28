@@ -8,8 +8,13 @@ import {
   fetchCampers,
   fetchFilteredCampers,
 } from "../../redux/campers/campersOperations";
-import { clearCampers, incrementPage } from "../../redux/campers/campersSlice";
 import {
+  clearCampers,
+  incrementPage,
+  setActiveQuery,
+} from "../../redux/campers/campersSlice";
+import {
+  selectActiveCampersQuery,
   selectCampers,
   selectCampersError,
   selectCampersLimit,
@@ -19,7 +24,10 @@ import {
   selectHasMoreCampers,
 } from "../../redux/campers/campersSelectors";
 import { selectFilters } from "../../redux/filters/filtersSelectors";
-import { INITIAL_PAGE } from "../../utils/constants";
+import {
+  buildCampersRequestParams,
+  hasActiveFilters,
+} from "../../utils/helpers";
 import css from "./CatalogPage.module.css";
 
 export const CatalogPage = () => {
@@ -32,10 +40,19 @@ export const CatalogPage = () => {
   const hasMore = useSelector(selectHasMoreCampers);
   const total = useSelector(selectCampersTotal);
   const filters = useSelector(selectFilters);
+  const activeQuery = useSelector(selectActiveCampersQuery);
 
   useEffect(() => {
-    dispatch(fetchCampers({ page, limit }));
-  }, [dispatch, page, limit]);
+    const requestParams = buildCampersRequestParams(activeQuery, page, limit);
+
+    if (hasActiveFilters(activeQuery)) {
+      dispatch(fetchFilteredCampers(requestParams));
+
+      return;
+    }
+
+    dispatch(fetchCampers(requestParams));
+  }, [activeQuery, dispatch, page, limit]);
 
   const handleLoadMore = () => {
     dispatch(incrementPage());
@@ -43,13 +60,14 @@ export const CatalogPage = () => {
 
   const handleSearch = (isReset = false) => {
     if (isReset) {
+      dispatch(setActiveQuery({}));
       dispatch(clearCampers());
-      dispatch(fetchCampers({ page: INITIAL_PAGE, limit }));
 
       return;
     }
 
-    dispatch(fetchFilteredCampers({ ...filters, page: INITIAL_PAGE, limit }));
+    dispatch(setActiveQuery(filters));
+    dispatch(clearCampers());
   };
 
   return (

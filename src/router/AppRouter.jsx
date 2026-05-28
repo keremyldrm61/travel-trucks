@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Layout } from "../components/Layout/Layout";
 import { HomePage } from "../pages/HomePage/HomePage";
 import { CatalogPage } from "../pages/CatalogPage/CatalogPage";
@@ -12,8 +12,7 @@ export const AppRouter = () => {
         <Route index element={<HomePage />} />
         <Route path="catalog" element={<CatalogPage />} />
         <Route path="catalog/:id" element={<CamperDetailsPage />} />
-        <Route path="404" element={<NotFoundPage />} />
-        <Route path="*" element={<Navigate to="/404" replace />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   );

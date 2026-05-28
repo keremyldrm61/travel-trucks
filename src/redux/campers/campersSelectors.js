@@ -6,3 +6,4 @@ export const selectCampersPage = (state) => state.campers.page;
 export const selectCampersLimit = (state) => state.campers.limit;
 export const selectHasMoreCampers = (state) => state.campers.hasMore;
 export const selectCampersTotal = (state) => state.campers.total;
+export const selectActiveCampersQuery = (state) => state.campers.activeQuery;
