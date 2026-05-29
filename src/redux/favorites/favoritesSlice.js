@@ -9,7 +9,18 @@ const getInitialFavorites = () => {
   }
 
   try {
-    return JSON.parse(savedFavorites);
+    const parsedFavorites = JSON.parse(savedFavorites);
+
+    if (!Array.isArray(parsedFavorites)) {
+      return [];
+    }
+
+    return parsedFavorites.filter(
+      (favorite) =>
+        favorite &&
+        typeof favorite === "object" &&
+        "id" in favorite,
+    );
   } catch {
     return [];
   }
@@ -26,24 +37,31 @@ const favoritesSlice = createSlice({
   },
   reducers: {
     addFavorite(state, action) {
-      const camperId = action.payload;
+      const camper = action.payload;
 
-      if (!state.items.includes(camperId)) {
-        state.items.push(camperId);
+      if (!state.items.some((favorite) => favorite.id === camper.id)) {
+        state.items.push(camper);
         persistFavorites(state.items);
       }
     },
     removeFavorite(state, action) {
-      state.items = state.items.filter((id) => id !== action.payload);
+      const camperId =
+        typeof action.payload === "object" ? action.payload.id : action.payload;
+
+      state.items = state.items.filter((favorite) => favorite.id !== camperId);
       persistFavorites(state.items);
     },
     toggleFavorite(state, action) {
-      const camperId = action.payload;
-      const isFavorite = state.items.includes(camperId);
+      const camper = action.payload;
+      const camperId =
+        typeof camper === "object" ? camper.id : camper;
+      const isFavorite = state.items.some((favorite) => favorite.id === camperId);
 
       state.items = isFavorite
-        ? state.items.filter((id) => id !== camperId)
-        : [...state.items, camperId];
+        ? state.items.filter((favorite) => favorite.id !== camperId)
+        : typeof camper === "object"
+          ? [...state.items, camper]
+          : state.items;
 
       persistFavorites(state.items);
     },

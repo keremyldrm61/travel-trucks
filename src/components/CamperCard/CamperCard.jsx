@@ -21,7 +21,7 @@ export const CamperCard = ({ camper }) => {
   const reviewsCount = getReviewsCount(camper.reviews);
 
   const handleFavoriteClick = () => {
-    dispatch(toggleFavorite(camper.id));
+    dispatch(toggleFavorite(camper));
   };
 
   return (

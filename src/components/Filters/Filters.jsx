@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import closeIcon from "../../assets/icons/close-icon.svg";
 import locationIcon from "../../assets/icons/location-icon.svg";
 import { toggleFavorite } from "../../redux/favorites/favoritesSlice";
-import { selectFavorites } from "../../redux/favorites/favoritesSelectors";
-import { selectCampers } from "../../redux/campers/campersSelectors";
+import {
+  selectFavoriteIds,
+  selectFavorites,
+} from "../../redux/favorites/favoritesSelectors";
 import {
   resetFilters,
   setFilters,
@@ -21,11 +23,8 @@ import css from "./Filters.module.css";
 export const Filters = ({ onSearch }) => {
   const dispatch = useDispatch();
   const filters = useSelector(selectFilters);
-  const favoriteIds = useSelector(selectFavorites);
-  const campers = useSelector(selectCampers);
-  const favoriteCampers = favoriteIds
-    .map((favoriteId) => campers.find((camper) => camper.id === favoriteId))
-    .filter(Boolean);
+  const favoriteCampers = useSelector(selectFavorites);
+  const favoriteIds = useSelector(selectFavoriteIds);
 
   const handleLocationChange = (event) => {
     dispatch(setFilters({ location: event.target.value }));
