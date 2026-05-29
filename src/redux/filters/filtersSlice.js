@@ -8,6 +8,12 @@ const initialState = {
   kitchen: false,
   AC: false,
   bathroom: false,
+  TV: false,
+  radio: false,
+  refrigerator: false,
+  microwave: false,
+  gas: false,
+  water: false,
 };
 
 const filtersSlice = createSlice({

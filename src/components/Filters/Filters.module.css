@@ -77,7 +77,13 @@
 .radioList {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
+}
+
+.checkboxList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .radioOption {
@@ -85,13 +91,29 @@
   align-items: center;
   gap: 8px;
   width: fit-content;
-  padding: 0;
-  border: none;
-  background-color: transparent;
+  cursor: pointer;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
   color: var(--main);
+}
+
+.checkboxOption {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--main);
+}
+
+.nativeControl {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .radio {
@@ -102,8 +124,34 @@
   background-color: var(--white);
 }
 
-.radioActive {
-  border: 6px solid var(--main);
+.nativeControl:checked + .radio {
+  border: 6px solid var(--grey-green);
+}
+
+.checkbox {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--gray);
+  border-radius: 4px;
+  background-color: var(--white);
+}
+
+.nativeControl:checked + .checkbox {
+  border-color: var(--grey-green);
+  background-color: var(--grey-green);
+}
+
+.nativeControl:checked + .checkbox::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  width: 5px;
+  height: 10px;
+  border-right: 2px solid var(--white);
+  border-bottom: 2px solid var(--white);
+  transform: rotate(45deg);
 }
 
 .actions {

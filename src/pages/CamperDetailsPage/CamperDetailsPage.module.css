@@ -154,7 +154,8 @@
   align-items: center;
   padding: 12px 18px;
   border-radius: 100px;
-  background-color: var(--white);
+  background-color: var(--badges);
+  mix-blend-mode: multiply;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;

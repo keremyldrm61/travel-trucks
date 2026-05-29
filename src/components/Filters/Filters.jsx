@@ -12,6 +12,7 @@ import {
 import { selectFilters } from "../../redux/filters/filtersSelectors";
 import {
   ENGINE_OPTIONS,
+  FEATURE_OPTIONS,
   TRANSMISSION_OPTIONS,
   VEHICLE_TYPE_OPTIONS,
 } from "../../utils/constants";
@@ -44,6 +45,10 @@ export const Filters = ({ onSearch }) => {
         transmission: filters.transmission === value ? "" : value,
       }),
     );
+  };
+
+  const handleFeatureToggle = (value) => {
+    dispatch(setFilters({ [value]: !filters[value] }));
   };
 
   const handleSubmit = (event) => {
@@ -88,21 +93,17 @@ export const Filters = ({ onSearch }) => {
             <p className={css.sectionTitle}>Camper form</p>
             <div className={css.radioList}>
               {VEHICLE_TYPE_OPTIONS.map((type) => (
-                <button
-                  className={css.radioOption}
-                  key={type.value}
-                  onClick={() => handleFormChange(type.value)}
-                  type="button"
-                >
-                  <span
-                    className={
-                      filters.form === type.value
-                        ? `${css.radio} ${css.radioActive}`
-                        : css.radio
-                    }
+                <label className={css.radioOption} key={type.value}>
+                  <input
+                    checked={filters.form === type.value}
+                    className={css.nativeControl}
+                    name="camper-form"
+                    onChange={() => handleFormChange(type.value)}
+                    type="radio"
                   />
+                  <span className={css.radio} />
                   {type.label}
-                </button>
+                </label>
               ))}
             </div>
           </div>
@@ -111,21 +112,17 @@ export const Filters = ({ onSearch }) => {
             <p className={css.sectionTitle}>Engine</p>
             <div className={css.radioList}>
               {ENGINE_OPTIONS.map((option) => (
-                <button
-                  className={css.radioOption}
-                  key={option.value}
-                  onClick={() => handleEngineChange(option.value)}
-                  type="button"
-                >
-                  <span
-                    className={
-                      filters.engine === option.value
-                        ? `${css.radio} ${css.radioActive}`
-                        : css.radio
-                    }
+                <label className={css.radioOption} key={option.value}>
+                  <input
+                    checked={filters.engine === option.value}
+                    className={css.nativeControl}
+                    name="engine"
+                    onChange={() => handleEngineChange(option.value)}
+                    type="radio"
                   />
+                  <span className={css.radio} />
                   {option.label}
-                </button>
+                </label>
               ))}
             </div>
           </div>
@@ -133,25 +130,37 @@ export const Filters = ({ onSearch }) => {
           <div className={css.group}>
             <p className={css.sectionTitle}>Transmission</p>
             <div className={css.radioList}>
-              {TRANSMISSION_OPTIONS.map((option) => {
-                return (
-                  <button
-                    className={css.radioOption}
-                    key={option.value}
-                    onClick={() => handleTransmissionChange(option.value)}
-                    type="button"
-                  >
-                    <span
-                      className={
-                        filters.transmission === option.value
-                          ? `${css.radio} ${css.radioActive}`
-                          : css.radio
-                      }
-                    />
-                    {option.label}
-                  </button>
-                );
-              })}
+              {TRANSMISSION_OPTIONS.map((option) => (
+                <label className={css.radioOption} key={option.value}>
+                  <input
+                    checked={filters.transmission === option.value}
+                    className={css.nativeControl}
+                    name="transmission"
+                    onChange={() => handleTransmissionChange(option.value)}
+                    type="radio"
+                  />
+                  <span className={css.radio} />
+                  {option.label}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div className={css.group}>
+            <p className={css.sectionTitle}>Features</p>
+            <div className={css.checkboxList}>
+              {FEATURE_OPTIONS.map((option) => (
+                <label className={css.checkboxOption} key={option.value}>
+                  <input
+                    checked={Boolean(filters[option.value])}
+                    className={css.nativeControl}
+                    onChange={() => handleFeatureToggle(option.value)}
+                    type="checkbox"
+                  />
+                  <span className={css.checkbox} />
+                  {option.label}
+                </label>
+              ))}
             </div>
           </div>
         </div>

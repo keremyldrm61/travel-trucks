@@ -31,6 +31,30 @@ const buildCampersQueryParams = (filters = {}) => {
     params.bathroom = filters.bathroom;
   }
 
+  if (filters.TV) {
+    params.TV = filters.TV;
+  }
+
+  if (filters.radio) {
+    params.radio = filters.radio;
+  }
+
+  if (filters.refrigerator) {
+    params.refrigerator = filters.refrigerator;
+  }
+
+  if (filters.microwave) {
+    params.microwave = filters.microwave;
+  }
+
+  if (filters.gas) {
+    params.gas = filters.gas;
+  }
+
+  if (filters.water) {
+    params.water = filters.water;
+  }
+
   if (filters.page) {
     params.page = filters.page;
   }

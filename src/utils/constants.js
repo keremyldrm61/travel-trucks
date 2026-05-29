@@ -23,6 +23,18 @@ export const TRANSMISSION_OPTIONS = [
   { label: "Manual", value: "manual" },
 ];
 
+export const FEATURE_OPTIONS = [
+  { label: "AC", value: "AC" },
+  { label: "Bathroom", value: "bathroom" },
+  { label: "Kitchen", value: "kitchen" },
+  { label: "TV", value: "TV" },
+  { label: "Radio", value: "radio" },
+  { label: "Refrigerator", value: "refrigerator" },
+  { label: "Microwave", value: "microwave" },
+  { label: "Gas", value: "gas" },
+  { label: "Water", value: "water" },
+];
+
 export const CAMPER_DETAIL_FIELDS = [
   { key: "form", label: "Form" },
   { key: "length", label: "Length" },
