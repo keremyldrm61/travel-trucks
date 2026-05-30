@@ -76,7 +76,7 @@
 .priceWrap {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 6px;
 }
 
 .price {
@@ -102,6 +102,13 @@
 
 .favoriteButtonActive {
   color: var(--grey-green);
+}
+
+.heartIcon {
+  width: 24px;
+  height: 24px;
+  color: currentColor;
+  fill: currentColor;
 }
 
 .description {

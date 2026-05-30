@@ -12,6 +12,7 @@ import {
   getCamperPreviewImage,
   getReviewsCount,
 } from "../../utils/helpers";
+import { GoHeart, GoHeartFill } from "react-icons/go";
 import css from "./CamperCard.module.css";
 
 export const CamperCard = ({ camper }) => {
@@ -70,7 +71,11 @@ export const CamperCard = ({ camper }) => {
               onClick={handleFavoriteClick}
               type="button"
             >
-              ♥
+              {isFavorite ? (
+                <GoHeartFill className={css.heartIcon} />
+              ) : (
+                <GoHeart className={css.heartIcon} />
+              )}
             </button>
           </div>
         </div>
