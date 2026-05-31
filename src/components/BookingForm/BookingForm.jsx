@@ -11,6 +11,7 @@ const initialFormState = {
 
 export const BookingForm = () => {
   const [formData, setFormData] = useState(initialFormState);
+  const minBookingDate = new Date().toISOString().split("T")[0];
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -23,9 +24,25 @@ export const BookingForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
 
-    if (!formData.name.trim() || !formData.email.trim() || !formData.bookingDate) {
+    if (!trimmedName || !trimmedEmail || !formData.bookingDate) {
       toast.error("Please fill in all required booking fields.");
+
+      return;
+    }
+
+    const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail);
+
+    if (!isEmailValid) {
+      toast.error("Please enter a valid email address.");
+
+      return;
+    }
+
+    if (formData.bookingDate < minBookingDate) {
+      toast.error("Please choose a booking date from today or later.");
 
       return;
     }
@@ -48,6 +65,7 @@ export const BookingForm = () => {
             name="name"
             onChange={handleChange}
             placeholder="Name*"
+            required
             type="text"
             value={formData.name}
           />
@@ -56,13 +74,16 @@ export const BookingForm = () => {
             name="email"
             onChange={handleChange}
             placeholder="Email*"
+            required
             type="email"
             value={formData.email}
           />
           <input
             className={css.input}
+            min={minBookingDate}
             name="bookingDate"
             onChange={handleChange}
+            required
             type="date"
             value={formData.bookingDate}
           />

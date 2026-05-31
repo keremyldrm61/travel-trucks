@@ -62,7 +62,9 @@ export const CamperDetailsPage = () => {
   }
 
   const gallery = camper.gallery ?? [];
-  const activeImage = selectedImage ?? gallery[0]?.original;
+  const activeImage = gallery.some((image) => image.original === selectedImage)
+    ? selectedImage
+    : gallery[0]?.original;
   const features = buildCamperFeatures(camper);
   const reviewsCount = getReviewsCount(camper.reviews);
 
