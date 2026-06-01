@@ -1,8 +1,5 @@
 .shell {
   min-height: 100vh;
-  background:
-    radial-gradient(circle at top left, rgba(228, 72, 72, 0.08), transparent 28%),
-    linear-gradient(180deg, var(--inputs) 0%, var(--badges) 100%);
 }
 
 .main {

@@ -21,7 +21,7 @@ import {
 } from "../../utils/helpers";
 import css from "./CamperDetailsPage.module.css";
 
-export const CamperDetailsPage = () => {
+const CamperDetailsPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const camper = useSelector(selectSelectedCamper);
@@ -168,3 +168,5 @@ export const CamperDetailsPage = () => {
     </section>
   );
 };
+
+export default CamperDetailsPage;

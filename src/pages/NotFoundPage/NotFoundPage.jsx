@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import css from "./NotFound.module.css";
 
-export const NotFoundPage = () => {
+const NotFoundPage = () => {
   return (
     <section className={css.section}>
       <div className={css.container}>
@@ -14,3 +14,5 @@ export const NotFoundPage = () => {
     </section>
   );
 };
+
+export default NotFoundPage;

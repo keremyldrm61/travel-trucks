@@ -30,7 +30,7 @@ import {
 } from "../../utils/helpers";
 import css from "./CatalogPage.module.css";
 
-export const CatalogPage = () => {
+const CatalogPage = () => {
   const dispatch = useDispatch();
   const campers = useSelector(selectCampers);
   const isLoading = useSelector(selectCampersLoading);
@@ -97,3 +97,5 @@ export const CatalogPage = () => {
     </section>
   );
 };
+
+export default CatalogPage;
