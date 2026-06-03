@@ -1,16 +1,108 @@
-# React + Vite
+# 🚐 TravelTrucks
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TravelTrucks is a frontend web application for browsing, filtering, and booking
+camper vans. The project was built with React and Vite, and uses Redux Toolkit
+for global state management.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Home page with a hero section and call-to-action button
+- Catalog page with camper listing
+- Backend-based filtering by location, camper form, engine, transmission, and
+  features
+- Favorites system with localStorage persistence
+- Camper details page with gallery, vehicle details, reviews, and booking form
+- Route-level lazy loading with React Router
+- Loading, error, and empty state handling
 
-## React Compiler
+## 🛠️ Technologies
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- Vite
+- React Router
+- Redux Toolkit
+- React Redux
+- Axios
+- React Hot Toast
+- React Icons
+- CSS Modules
+- ESLint
 
-## Expanding the ESLint configuration
+## 🔗 API
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Base URL:
+
+```text
+https://66b1f8e71ca8ad33d4f5f63e.mockapi.io
+```
+
+Endpoints:
+
+```text
+GET /campers
+GET /campers/:id
+```
+
+## ⚙️ Installation
+
+1. Clone the repository:
+
+```bash
+git clone <your-repository-url>
+cd travel-trucks
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start the development server:
+
+```bash
+npm run dev
+```
+
+## ▶️ Usage
+
+- Open the app in the browser after starting the dev server
+- Use the `View Now` button on the home page to open the catalog
+- Filter campers on the catalog page
+- Add or remove campers from favorites
+- Open camper details with the `Show More` button
+- Submit the booking form on the details page
+
+## 📜 Available Scripts
+
+```bash
+npm run dev
+npm run build
+npm run preview
+npm run lint
+```
+
+## 🧱 Project Structure
+
+```text
+src/
+  components/
+  pages/
+  redux/
+  router/
+  services/
+  styles/
+  utils/
+```
+
+## 🌍 Live Demo
+
+Add your Vercel deployment link here after publishing:
+
+```text
+https://your-vercel-link.vercel.app
+```
+
+## 👨‍💻 Author
+
+Kerem Yıldırım
