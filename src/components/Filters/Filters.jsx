@@ -3,14 +3,8 @@ import { Link } from "react-router-dom";
 import closeIcon from "../../assets/icons/close-icon.svg";
 import locationIcon from "../../assets/icons/location-icon.svg";
 import { toggleFavorite } from "../../redux/favorites/favoritesSlice";
-import {
-  selectFavoriteIds,
-  selectFavorites,
-} from "../../redux/favorites/favoritesSelectors";
-import {
-  resetFilters,
-  setFilters,
-} from "../../redux/filters/filtersSlice";
+import { selectFavoriteIds, selectFavorites } from "../../redux/favorites/favoritesSelectors";
+import { resetFilters, setFilters } from "../../redux/filters/filtersSlice";
 import { selectFilters } from "../../redux/filters/filtersSelectors";
 import {
   ENGINE_OPTIONS,
@@ -42,7 +36,7 @@ export const Filters = ({ onSearch }) => {
     dispatch(
       setFilters({
         transmission: filters.transmission === value ? "" : value,
-      }),
+      })
     );
   };
 
@@ -78,7 +72,7 @@ export const Filters = ({ onSearch }) => {
               id="location"
               name="location"
               onChange={handleLocationChange}
-              placeholder="Kyiv, Ukraine"
+              placeholder="City"
               type="text"
               value={filters.location}
             />
